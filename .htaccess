@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# Ako je samo korenski zahtev, preusmeri na public/
+RewriteRule ^$ public/ [L]
+
+# Svi ostali zahtevi neka idu u public/ takođe
+RewriteRule (.*) public/$1 [L]
