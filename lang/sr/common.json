@@ -1,0 +1,19 @@
+{
+  "common.yes": "Da",
+  "common.no": "Ne",
+  "common.save": "Sačuvaj",
+  "common.cancel": "Otkaži",
+  "common.edit": "Izmeni",
+  "common.delete": "Obriši",
+  "common.add": "Dodaj",
+  "common.close": "Zatvori",
+  "common.choose": "Izaberi...",
+  "common.actions": "Akcije",
+  "common.search": "Pretraga",
+  "common.confirm": "Potvrdi",
+  "common.back": "Nazad",
+  "common.details": "Detalji",
+  "common.action": "Akcija",
+  "common.of": "Od",
+  "common.discard": "Odustani"
+}

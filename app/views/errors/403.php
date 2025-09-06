@@ -4,7 +4,7 @@
     <div class="text-center">
         <h1 class="display-1 text-warning">403</h1>
         <p class="lead">Nemate dozvolu da pristupite ovoj stranici.</p>
-        <a href="/" class="btn btn-outline-secondary">Nazad na početnu</a>
+        <a href="<?= url("/") ?>" class="btn btn-outline-secondary">Nazad na početnu</a>
     </div>
 </div>
 

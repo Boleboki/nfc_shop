@@ -1,0 +1,34 @@
+{
+  "users.page_title": "Lista korisnika",
+
+  "users.modal_delete.title": "Potvrda brisanja",
+  "users.modal_delete.message": "Da li ste sigurni da želite da obrišete korisnika",
+  "users.modal_delete.cancel": "Otkaži",
+  "users.modal_delete.confirm": "Obriši",
+
+  "users.table.id": "ID",
+  "users.table.username": "Korisničko ime",
+  "users.table.role": "Rola",
+  "users.table.active": "Aktivan",
+  "users.table.empty": "Nema korisnika za prikaz.",
+
+  "users.roles.admin": "Admin",
+  "users.roles.user": "Korisnik",
+
+  "users.form.edit_title": "Izmena korisnika",
+  "users.form.create_title": "Dodavanje novog korisnika",
+
+  "users.form.labels.username": "Korisničko ime",
+  "users.form.labels.password": "Lozinka",
+  "users.form.labels.role": "Rola",
+  "users.form.labels.active": "Aktivan",
+  "users.form.labels.new_password": "Nova lozinka",
+  "users.form.labels.confirm_password": "Potvrdi lozinku",
+
+  "users.form.buttons.save_changes": "Sačuvaj izmene",
+  "users.form.buttons.save_user": "Sačuvaj korisnika",
+  "users.form.buttons.reset_password": "Resetuj lozinku",
+  "users.form.buttons.confirm_reset": "Potvrdi",
+
+  "users.form.modals.reset_password_title": "Resetuj lozinku korisniku"
+}

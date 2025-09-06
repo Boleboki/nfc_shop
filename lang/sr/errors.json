@@ -1,0 +1,5 @@
+{
+  "errors.404": "Stranica nije pronađena",
+  "errors.403": "Nemate dozvolu da pristupite ovoj stranici.",
+  "errors.back": "Nazad na početnu"
+}

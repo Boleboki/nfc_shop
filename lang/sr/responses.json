@@ -1,0 +1,20 @@
+{
+  "responses.auth.invalid_credentials": "Pogrešna lozinka ili username",
+  "responses.auth.logout_success": "Uspešno si se izlogovao",
+
+  "responses.citaci.not_found_citac": "Čitač nije pronađen",
+  "responses.citaci.create_success": "Čitač je uspešno dodat",
+  "responses.citaci.update_success": "Čitač je uspešno ažuriran",
+  "responses.citaci.delete_success": "Čitač je uspešno obrisan",
+
+  "responses.configuration.update_success": "Konfiguracija sa ključem :key je uspešno ažurirana",
+  "responses.configuration.delete_success": "Konfiguracija je uspešno obrisana",
+
+  "responses.users.create_success": "Korisnik uspešno dodat",
+  "responses.users.update_success": "Korisnik uspešno izmenjen",
+  "responses.users.delete_success": "Korisnik je obrisan",
+  "responses.users.not_found": "Korisnik nije pronađen",
+  "responses.users.exists": "Korisnik već postoji",
+
+  "responses.general.invalid_data": "Nevalidni podaci"
+}

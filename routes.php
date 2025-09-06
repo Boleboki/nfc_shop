@@ -19,16 +19,25 @@ Router::post('/korpa', 'CartController@add');
 Router::delete('/korpa/remove/{id}', 'CartController@remove');
 Router::post('/checkout', 'OrderController@create');
 
-Router::get('/admin', 'AdminController@loginForm')->only(Guest::class);
-Router::get('/admin/dashboard', 'AdminController@dashboard')->only(Admin::class);
+
+Router::get("/api/products", 'ProductController@getAll');
+
+Router::post("/upload-image", "AdminController@uploadImage")->only(Admin::class);
+Router::post("/delete-uploaded-image", "AdminController@deleteImage")->only(Admin::class);
+
 
 Router::post('/admin/login', 'AuthController@login')->only(Guest::class);
 Router::delete('/admin/logout', 'AuthController@logout')->only(Admin::class);
 
-Router::get('/admin/products', 'ProductAdminController@index')->only(Admin::class);
-Router::get("/admin/products/{id}/edit", "ProductAdminController@edit")->only(Admin::class);
-Router::delete('/admin/products/{id}', 'ProductAdminController@delete')->only(Admin::class);
+Router::get('/admin', 'AdminController@loginForm')->only(Guest::class);
+Router::get('/admin/dashboard', 'AdminController@dashboard')->only(Admin::class);
 
+Router::get('/admin/products', 'ProductAdminController@index')->only(Admin::class);
+Router::get('/admin/products/create', 'ProductAdminController@create')->only(Admin::class);
+Router::post('/admin/products', 'ProductAdminController@store')->only(Admin::class);
+Router::get('/admin/products/{id}/edit', 'ProductAdminController@edit')->only(Admin::class);
+Router::put('/admin/products/{id}', 'ProductAdminController@update')->only(Admin::class);
+Router::delete('/admin/products/{id}', 'ProductAdminController@delete')->only(Admin::class);
 
 
 // Router::delete("/admin", "admin/logout.php")->only("admin");
@@ -51,15 +60,10 @@ Router::delete('/admin/products/{id}', 'ProductAdminController@delete')->only(Ad
 // Router::get('/admin/dashboard', 'AdminDashboardController@index')->only(AdminAuthMiddleware::class);
 
 // // Products
-// Router::get('/admin/products', 'AdminProductController@index')->only(AdminAuthMiddleware::class);
-// Router::get('/admin/products/create', 'AdminProductController@create')->only(AdminAuthMiddleware::class);
-// Router::post('/admin/products', 'AdminProductController@store')->only(AdminAuthMiddleware::class);
-// Router::get('/admin/products/{id}/edit', 'AdminProductController@edit')->only(AdminAuthMiddleware::class);
-// Router::put('/admin/products/{id}', 'AdminProductController@update')->only(AdminAuthMiddleware::class);
-// Router::delete('/admin/products/{id}', 'AdminProductController@destroy')->only(AdminAuthMiddleware::class);
+
 
 // // Admin users
-// Router::get('/admin/users', 'AdminUserController@index')->only(AdminAuthMiddleware::class);
+// Router::get('/admin/users', 'AdminUserController@index')->only(Admin::class);
 // Router::get('/admin/users/create', 'AdminUserController@create')->only(AdminAuthMiddleware::class);
 // Router::post('/admin/users', 'AdminUserController@store')->only(AdminAuthMiddleware::class);
 // Router::get('/admin/users/{id}/edit', 'AdminUserController@edit')->only(AdminAuthMiddleware::class);

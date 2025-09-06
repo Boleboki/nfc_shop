@@ -58,7 +58,7 @@
   </div>
 </div>
 
-<div class="product-container">
+<div class="product-container" id="oneProductContainer">
   <div class="product-image">
     <img src="/img/<?= htmlspecialchars($product["image_url"]) ?>" alt="Product Image">
   </div>

@@ -1,0 +1,15 @@
+{
+  "nav.admin": "Administration",
+  "nav.users": "Users",
+  "nav.users_list": "User list",
+  "nav.users_create": "Add new user",
+  "nav.settings": "Settings",
+  "nav.settings_general": "Program settings",
+  "nav.settings_readers": "Reader settings",
+  "nav.readers_list": "Reader list",
+  "nav.readers_create": "Add new reader",
+  "nav.logout": "Logout",
+  "nav.language": "Language",
+  "nav.languages.en": "English",
+  "nav.languages.sr": "Serbian"
+}

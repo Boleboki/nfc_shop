@@ -1,0 +1,8 @@
+{
+  "login.page": "Login",
+  "login.username": "Username",
+  "login.username-placeholder": "Enter username",
+  "login.password": "Password",
+  "login.password-placeholder": "Enter password",
+  "login.button": "Login"
+}

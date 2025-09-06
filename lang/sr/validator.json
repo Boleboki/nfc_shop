@@ -1,0 +1,24 @@
+{
+  "validator.username.empty": "Korisničko ime ne sme biti prazno.",
+  "validator.username.length": "Korisničko ime mora imati između :min i :max karaktera.",
+  "validator.username.forbidden_characters": "Korisničko ime sadrži nedozvoljene karaktere.",
+  "validator.username.exists": "Korisničko ime već postoji",
+
+  "validator.password.empty": "Lozinka ne sme da bude prazna.",
+  "validator.password.min_length": "Lozinka mora imati najmanje :min karaktera.",
+  "validator.password.forbidden_characters": "Lozinka sadrži nedozvoljenje karaktere.",
+  "validator.password.equals": "Lozinke se ne poklapaju.",
+
+  "validator.notEmpty": "Polje ne sme biti prazno.",
+  "validator.email": "Uneta email adresa nije validna.",
+  "validator.ip": "Uneta IP adresa nije ispravna.",
+  "validator.intVal": "Polje mora biti ceo broj.",
+  "validator.alnum": "Polje može sadržati samo slova i brojeve.",
+  "validator.length": "Polje mora imati između {{minValue}} i {{maxValue}} karaktera.",
+  "validator.numericVal": "Polje mora biti numerička vrednost.",
+  "validator.min": "Vrednost mora biti veća ili jednaka {{compareTo}}.",
+  "validator.max": "Vrednost mora biti manja ili jednaka {{compareTo}}.",
+  "validator.intCommaSeparator": "Polje mora biti u formatu: brojevi odvojeni zarezima (npr. 123,412,512).",
+  "validator.specialCharacters": "Polje ne sme da sadrži specijalne karaktere.",
+  "validator.DBduplicate": "Ovaj podatak već postoji."
+}

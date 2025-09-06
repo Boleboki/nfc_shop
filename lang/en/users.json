@@ -1,0 +1,34 @@
+{
+  "users.page_title": "User List",
+
+  "users.modal_delete.title": "Delete Confirmation",
+  "users.modal_delete.message": "Are you sure you want to delete the user",
+  "users.modal_delete.cancel": "Cancel",
+  "users.modal_delete.confirm": "Delete",
+
+  "users.table.id": "ID",
+  "users.table.username": "Username",
+  "users.table.role": "Role",
+  "users.table.active": "Active",
+  "users.table.empty": "No users to display.",
+
+  "users.roles.admin": "Admin",
+  "users.roles.user": "User",
+
+  "users.form.edit_title": "Edit User",
+  "users.form.create_title": "Add New User",
+
+  "users.form.labels.username": "Username",
+  "users.form.labels.password": "Password",
+  "users.form.labels.role": "Role",
+  "users.form.labels.active": "Active",
+  "users.form.labels.new_password": "New Password",
+  "users.form.labels.confirm_password": "Confirm Password",
+
+  "users.form.buttons.save_changes": "Save Changes",
+  "users.form.buttons.save_user": "Save User",
+  "users.form.buttons.reset_password": "Reset Password",
+  "users.form.buttons.confirm_reset": "Confirm",
+
+  "users.form.modals.reset_password_title": "Reset User Password"
+}

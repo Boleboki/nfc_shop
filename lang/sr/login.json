@@ -1,0 +1,8 @@
+{
+  "login.page": "Prijava",
+  "login.username": "Korisničko ime",
+  "login.username-placeholder": "Unesi korisničko ime",
+  "login.password": "Lozinka",
+  "login.password-placeholder": "Unesi lozinku",
+  "login.button": "Prijavi se"
+}

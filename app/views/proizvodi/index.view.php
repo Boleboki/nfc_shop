@@ -12,18 +12,8 @@
     <h3 class="text-center mb-4">Poručite svoj već danas!</h3>
   </div>
   <div class="row g-4 mt-5">
-    <?php foreach ($products as $product): ?>
-      <div class="col-6 col-md-3" data-aos="zoom-in">
-        <a href="<?= url('proizvodi/' . $product['url_name']) ?>" class="product-link">
-          <div class="card h-100 shadow-sm text-center product-card">
-            <img src="<?= url('img/' . $product['image_url']) ?>" class="card-img-top img-fluid" alt="NFC Privezak">
-            <div class="card-body">
-              <h5 class="card-title"><?= $product["name"] ?></h5>
-            </div>
-          </div>
-        </a>
-      </div>
-    <?php endforeach; ?>
+
+  </div>
 </section>
 
 <?php require base_path("app/views/inc/footer.php") ?>

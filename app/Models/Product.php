@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use App\Core\Database;
+use App\Core\Logger;
 
 class Product extends Database
 {
+
+    const PRODUCTS_TABLE = "products";
 
     public function __construct()
     {
@@ -14,19 +17,32 @@ class Product extends Database
 
     public function fetch_all()
     {
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT * FROM " . self::PRODUCTS_TABLE;
         $result = $this->conn->query($sql);
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-
-    public function create($name, $description, $short_description, $price, $stock_quantity, $image)
+    public function getAll()
     {
-        $sql = "INSERT INTO products (name, description, short_description, price, stock_quantity, image_url) VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("sssdis", $name, $description, $short_description, $price, $stock_quantity, $image);
-        $stmt->execute();
+        $sql = "SELECT name, url_name, description, short_description, price, image_url FROM " . self::PRODUCTS_TABLE;
+        $result = $this->conn->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+
+    public function create($data)
+    {
+        try {
+            $sql = "INSERT INTO products (name, description, short_description, price, stock_quantity, image_url) VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param("sssdis", $data['name'], $data['description'], $data['short_description'], $data['price'], $data['stock_quantity'], $data['image_url']);
+            $stmt->execute();
+        } catch (\Throwable $err) {
+            Logger::error("Greška prilikom dodavanja proizvoda: " . $err->getMessage());
+            http_response_code(500);
+            throw $err;
+        }
     }
 
     public function add_view($product_id)
@@ -76,11 +92,11 @@ class Product extends Database
         return $result->fetch_assoc();
     }
 
-    public function update($product_id, $name, $description, $short_description, $price, $stock_quantity, $image)
+    public function update($product_id, $data)
     {
         $sql = "UPDATE products SET name = ?, description = ?, short_description = ?, price = ?, stock_quantity = ?, image_url = ? WHERE product_id = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("sssdisi", $name, $description, $short_description, $price, $stock_quantity, $image, $product_id);
+        $stmt->bind_param("sssdisi", $data['name'], $data['description'], $data['short_description'], $data['price'], $data['stock_quantity'], $data['image_url'], $product_id);
         return $stmt->execute();
     }
 

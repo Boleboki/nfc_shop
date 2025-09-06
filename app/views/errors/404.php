@@ -4,7 +4,7 @@
     <div class="text-center">
         <h1 class="display-1 text-danger">404</h1>
         <p class="lead">Stranica nije pronađena.</p>
-        <a href="/" class="btn btn-primary">Nazad na početnu</a>
+        <a href="<?= url("/") ?>" class="btn btn-primary">Nazad na početnu</a>
     </div>
 </div>
 

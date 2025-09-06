@@ -1,0 +1,19 @@
+{
+  "common.yes": "Yes",
+  "common.no": "No",
+  "common.save": "Save",
+  "common.cancel": "Cancel",
+  "common.edit": "Edit",
+  "common.delete": "Delete",
+  "common.add": "Add",
+  "common.close": "Close",
+  "common.choose": "Choose...",
+  "common.actions": "Actions",
+  "common.search": "Search",
+  "common.confirm": "Confirm",
+  "common.back": "Back",
+  "common.details": "Details",
+  "common.action": "Action",
+  "common.of": "Of",
+  "common.discard": "Discard"
+}

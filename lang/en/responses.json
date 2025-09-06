@@ -1,0 +1,20 @@
+{
+  "responses.auth.invalid_credentials": "Incorrect password or username",
+  "responses.auth.logout_success": "You have successfully logged out",
+
+  "responses.citaci.not_found_citac": "Reader not found",
+  "responses.citaci.create_success": "Reader successfully added",
+  "responses.citaci.update_success": "Reader successfully updated",
+  "responses.citaci.delete_success": "Reader successfully deleted",
+
+  "responses.configuration.update_success": "Configuration with the key :key successfully updated",
+  "responses.configuration.delete_success": "Configuration successfully deleted",
+
+  "responses.users.create_success": "User successfully added",
+  "responses.users.update_success": "User successfully updated",
+  "responses.users.delete_success": "User successfully deleted",
+  "responses.users.not_found": "User not found",
+  "responses.users.exists": "User already exists",
+
+  "responses.general.invalid_data": "Invalid data"
+}

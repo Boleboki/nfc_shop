@@ -38,33 +38,39 @@
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-  <a class="navbar-brand" href="/admin/dashboard">Glavni meni</a>
+  <a class="navbar-brand" href="<?= url('/') ?>">Main menu</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar" aria-controls="adminNavbar" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="adminNavbar">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-            Korisnici
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/admin/users">Lista korisnika</a></li>
-            <li><a class="dropdown-item" href="/admin/users/create">Dodaj novog korisnika</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-          Proizvodi
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/admin/products">Lista proizvoda</a></li>
-            <li><a class="dropdown-item" href="/admin/products/create">Dodaj novi proizvod</a></li>
-          </ul>
-        </li>
-      </ul>
-      <button class="btn btn-outline-light" type="button" id="logoutBtn">Izloguj se</button>
-
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="<?= url('/admin/dashboard') ?>" role="button">
+          Dashboard
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+          Users
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="<?= url('admin/users') ?>">Users list</a></li>
+          <li><a class="dropdown-item" href="<?= url('admin/users/create') ?>">Add new user</a></li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+          Products
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="<?= url('admin/products') ?>">Products list</a></li>
+          <li><a class="dropdown-item" href="<?= url('admin/products/create') ?>">Add new product</a></li>
+        </ul>
+      </li>
+    </ul>
+    <button class="btn btn-outline-light" id="logoutBtn">
+      Logout
+    </button>
   </div>
 </nav>

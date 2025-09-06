@@ -15,11 +15,11 @@ $cart = new Cart();
     </button>
 
     <!-- Logo -->
-    <a class="navbar-brand position-absolute top-50 start-50 translate-middle d-lg-none" href="/">LOGO</a>
-    <a class="navbar-brand d-none d-lg-block" href="/">LOGO</a>
+    <a class="navbar-brand position-absolute top-50 start-50 translate-middle d-lg-none" href="<?= url('/') ?>">LOGO</a>
+    <a class="navbar-brand d-none d-lg-block" href="<?= url('/') ?>">LOGO</a>
 
     <!-- Korpa -->
-    <a class="btn position-relative ms-auto d-lg-none cart-btn" href="/korpa">
+    <a class="btn position-relative ms-auto d-lg-none cart-btn" href="<?= url('/korpa') ?>">
       <?php if ($cart->countItems() > 0): ?>
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary cart-counter">
           <?= $cart->countItems() ?>
@@ -45,14 +45,14 @@ $cart = new Cart();
         </li>
         <?php if ((new User)->admin()): ?>
           <li class="nav-item">
-            <a class="nav-link" href="/admin/products">Admin</a>
+            <a class="nav-link" href="<?= url('/admin/products') ?>">Admin</a>
           </li>
         <?php endif; ?>
       </ul>
     </div>
 
     <!-- Korpa desktop -->
-    <a class="btn position-relative d-none d-lg-block ms-auto cart-btn" href="/korpa">
+    <a class="btn position-relative d-none d-lg-block ms-auto cart-btn" href="<?= url('/korpa') ?>">
       <?php if ($cart->countItems() > 0): ?>
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary cart-counter">
           <?= $cart->countItems() ?>

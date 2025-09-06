@@ -1,0 +1,15 @@
+{
+  "nav.admin": "Administracija",
+  "nav.users": "Korisnici",
+  "nav.users_list": "Lista korisnika",
+  "nav.users_create": "Dodaj novog korisnika",
+  "nav.settings": "Podešavanja",
+  "nav.settings_general": "Podešavanja programa",
+  "nav.settings_readers": "Podešavanja čitača",
+  "nav.readers_list": "Lista čitača",
+  "nav.readers_create": "Dodaj novi čitač",
+  "nav.logout": "Odjava",
+  "nav.language": "Jezik",
+  "nav.languages.en": "Engleski",
+  "nav.languages.sr": "Srpski"
+}

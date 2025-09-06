@@ -6,9 +6,11 @@ use App\Core\JWT;
 use App\Core\Logger;
 use App\Models\User;
 
-class AuthController{
+class AuthController
+{
     private $jwt;
-    public function __construct() {
+    public function __construct()
+    {
         $this->jwt = new JWT;
     }
 
@@ -19,13 +21,13 @@ class AuthController{
 
         $username = $data['username'];
         $password = $data['password'];
-        if(empty($username) || empty($password)) {
-            echo json_encode([ 'success' => false, 'error' => "Polja ne smeju biti prazna"]);
+        if (empty($username) || empty($password)) {
+            echo json_encode(['success' => false, 'error' => "Polja ne smeju biti prazna"]);
             return;
         }
         $user = (new User)->get_user_by_username($username);
-        
-        if(!$user || !password_verify($password, $user['password'])){
+
+        if (!$user || !password_verify($password, $user['password'])) {
             http_response_code(401);
             Logger::error("Pogresna lozinka ili username");
             echo json_encode(['success' => false, 'error' => "Pogresna lozinka ili username"]);
@@ -45,7 +47,7 @@ class AuthController{
             'samesite' => 'Lax'
         ]);
         Logger::info("Korisnik {$username} uspesno ulogovan");
-        echo json_encode([ 'success' => true, 'redirect' => "/admin/dashboard"]);
+        echo json_encode(['success' => true, 'redirect' => url("/admin/dashboard")]);
     }
 
     public function logout()
@@ -60,6 +62,6 @@ class AuthController{
         ]);
         $data = $this->jwt->decode($token);
         Logger::info("Korisnik {$data['username']} uspesno izlogovan");
-        echo json_encode(['message' => 'Uspesno izlogovan', 'redirect' => '/']);
+        echo json_encode(['message' => 'Uspesno izlogovan', 'redirect' => url('/')]);
     }
 }
