@@ -42,7 +42,10 @@ class Database
      */
     protected function connect()
     {
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
         $this->conn = new \mysqli(DB_HOST, DB_USERNAME, DB_PASS, DB_NAME);
+        $this->conn->set_charset("utf8mb4");
 
         // Provera uspešnosti konekcije
         if ($this->conn->connect_error) {

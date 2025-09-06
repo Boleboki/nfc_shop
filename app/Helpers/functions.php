@@ -28,16 +28,16 @@ function view($path, $attributes = [])
         $fullPath = base_path('app/views/' . $path);
 
         if (!file_exists($fullPath)) {
-            throw new \Exception("View fajl ne postoji: $fullPath");
+            throw new \Exception("View file does not exist: $fullPath");
         }
 
         extract($attributes);
         include $fullPath;
     } catch (\Throwable $e) {
         http_response_code(500);
-        echo "Greška pri učitavanju view fajla: " . htmlspecialchars($e->getMessage());
+        echo "Error loading view file: " . htmlspecialchars($e->getMessage());
         throw $e;
-        // Ako hoćeš: logovanje, fallback view itd.
+        // Optional: logging, fallback view, etc.
     }
 }
 
@@ -53,4 +53,12 @@ function redirect($path)
 function url($path = '')
 {
     return BASE_URL . '/' . ltrim($path, '/');
+}
+
+function deny(string $redirectTo): void
+{
+    http_response_code(403);
+    $redirectTo = url($redirectTo);
+    header("Location: {$redirectTo}");
+    exit;
 }

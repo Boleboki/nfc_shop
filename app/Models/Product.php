@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Core\Database;
 use App\Core\Logger;
+use Exception;
 
 class Product extends Database
 {
@@ -33,30 +34,49 @@ class Product extends Database
 
     public function create($data)
     {
+        $stmt = null;
         try {
-            $sql = "INSERT INTO products (name, description, short_description, price, stock_quantity, image_url) VALUES (?, ?, ?, ?, ?, ?)";
+            $this->ensureConnection();
+            $this->conn->begin_transaction();
+            $sql = "INSERT INTO " . self::PRODUCTS_TABLE . " (name, description, short_description, price, stock_quantity, image_url) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $this->conn->prepare($sql);
             $stmt->bind_param("sssdis", $data['name'], $data['description'], $data['short_description'], $data['price'], $data['stock_quantity'], $data['image_url']);
             $stmt->execute();
-        } catch (\Throwable $err) {
-            Logger::error("Greška prilikom dodavanja proizvoda: " . $err->getMessage());
-            http_response_code(500);
-            throw $err;
+            $this->conn->commit();
+        } catch (\Throwable $e) {
+            $this->conn->rollback();
+            Logger::error("Greška prilikom dodavanja proizvoda: " . $e->getMessage());
+            throw $e;
+        } finally {
+            if ($stmt) {
+                $stmt->close();
+            }
         }
     }
 
     public function add_view($product_id)
     {
-        $views = $this->get_views($product_id) + 1;
-        $stmt = $this->conn->prepare("UPDATE products SET views = ? WHERE product_id = ?");
-        $stmt->bind_param("ii", $views, $product_id);
-        $stmt->execute();
-        return $views;
+        $stmt = null;
+        try {
+            $this->ensureConnection();
+            $views = $this->get_views($product_id) + 1;
+            $stmt = $this->conn->prepare("UPDATE " . self::PRODUCTS_TABLE . " SET views = ? WHERE product_id = ?");
+            $stmt->bind_param("ii", $views, $product_id);
+            $stmt->execute();
+            return $views;
+        } catch (\Throwable $e) {
+            Logger::error("Greška dodavanje pregleda proizvodu: " . $e->getMessage());
+            throw $e;
+        } finally {
+            if ($stmt) {
+                $stmt->close();
+            }
+        }
     }
 
     public function get_views($product_id)
     {
-        $stmt = $this->conn->prepare("SELECT views FROM products WHERE product_id = ?");
+        $stmt = $this->conn->prepare("SELECT views FROM " . self::PRODUCTS_TABLE . " WHERE product_id = ?");
         $stmt->bind_param("i", $product_id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -65,7 +85,7 @@ class Product extends Database
 
     public function get_quantity($product_id)
     {
-        $stmt = $this->conn->prepare("SELECT stock_quantity FROM products WHERE product_id = ?");
+        $stmt = $this->conn->prepare("SELECT stock_quantity FROM " . self::PRODUCTS_TABLE . " WHERE product_id = ?");
         $stmt->bind_param("i", $product_id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -74,7 +94,7 @@ class Product extends Database
 
     public function read($product_id)
     {
-        $sql = "SELECT * FROM products WHERE product_id = ?";
+        $sql = "SELECT * FROM " . self::PRODUCTS_TABLE . " WHERE product_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $product_id);
         $stmt->execute();
@@ -84,7 +104,7 @@ class Product extends Database
 
     public function read_name($name)
     {
-        $sql = "SELECT * FROM products WHERE url_name = ?";
+        $sql = "SELECT * FROM " . self::PRODUCTS_TABLE . " WHERE url_name = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("s", $name);
         $stmt->execute();
@@ -94,7 +114,7 @@ class Product extends Database
 
     public function update($product_id, $data)
     {
-        $sql = "UPDATE products SET name = ?, description = ?, short_description = ?, price = ?, stock_quantity = ?, image_url = ? WHERE product_id = ?";
+        $sql = "UPDATE " . self::PRODUCTS_TABLE . " SET name = ?, description = ?, short_description = ?, price = ?, stock_quantity = ?, image_url = ? WHERE product_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("sssdisi", $data['name'], $data['description'], $data['short_description'], $data['price'], $data['stock_quantity'], $data['image_url'], $product_id);
         return $stmt->execute();
@@ -102,7 +122,7 @@ class Product extends Database
 
     public function delete($product_id)
     {
-        $sql = "DELETE FROM products WHERE product_id = ?";
+        $sql = "DELETE FROM " . self::PRODUCTS_TABLE . " WHERE product_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $product_id);
         return $stmt->execute();
@@ -111,7 +131,7 @@ class Product extends Database
     public function decrease_quantity($product_id, $amount)
     {
         $quantity = $this->get_quantity($product_id) - $amount;
-        $stmt = $this->conn->prepare("UPDATE products SET stock_quantity = ? WHERE product_id = ?");
+        $stmt = $this->conn->prepare("UPDATE " . self::PRODUCTS_TABLE . " SET stock_quantity = ? WHERE product_id = ?");
         $stmt->bind_param("ii", $quantity, $product_id);
         $stmt->execute();
         return $quantity;
@@ -119,9 +139,15 @@ class Product extends Database
 
     public function most_viewed()
     {
-        $sql = "SELECT * FROM products ORDER BY views DESC LIMIT 4";
-        $result = $this->conn->query($sql);
-        return $result->fetch_all(MYSQLI_ASSOC);
+        try {
+            $this->ensureConnection();
+            $sql = "SELECT * FROM " . self::PRODUCTS_TABLE . " ORDER BY views DESC LIMIT 4";
+            $result = $this->conn->query($sql);
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } catch (\Throwable $e) {
+            Logger::error("Greška prilikom vraćanja proizvoda sa najviše pregleda: " . $e->getMessage());
+            throw $e;
+        }
     }
 
     public function trackProductView($productId)
@@ -133,7 +159,7 @@ class Product extends Database
 
         if (!in_array($productId, $viewedArray)) {
             // Povećaj broj pregleda
-            $stmt = $this->conn->prepare("UPDATE products SET views = views + 1 WHERE product_id = ?");
+            $stmt = $this->conn->prepare("UPDATE " . self::PRODUCTS_TABLE . " SET views = views + 1 WHERE product_id = ?");
             $stmt->bind_param("i", $productId);
             $stmt->execute();
 

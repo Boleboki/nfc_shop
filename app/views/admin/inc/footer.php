@@ -1,6 +1,3 @@
-<script type="module" src="<?= url('/js/auth.js') ?>"></script>
-<script type="module" src="<?= url('/js/product.js') ?>"></script>
-<script type="module" src="<?= url('/js/user.js') ?>"></script>
 <script type="module" src="<?= url('/js/main.js') ?>"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>

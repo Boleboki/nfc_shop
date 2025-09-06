@@ -2,11 +2,13 @@
 
 namespace App\Middleware;
 
-class Middleware{
+class Middleware
+{
     public const MAP = [
         'guest' => Guest::class,
         'auth' => Auth::class,
-        'admin' => Admin::class
+        'admin' => Admin::class,
+        'master' => Master::class
     ];
 
     public static function resolve(array|string|null $middlewares): void
@@ -25,5 +27,4 @@ class Middleware{
             (new $middleware)->handle();
         }
     }
-
 }

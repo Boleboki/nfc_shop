@@ -4,7 +4,7 @@ namespace App\Middleware;
 
 use App\Core\JWT;
 
-class Auth
+class Master
 {
     public function handle(): void
     {
@@ -12,11 +12,11 @@ class Auth
             deny("/");
         }
 
+        $token = $_COOKIE['token'];
         $jwt = new JWT();
-        $payload = $jwt->decode($_COOKIE['token']);
+        $payload = $jwt->decode($token);
 
-        if (!$payload) {
+        if (!$payload || $payload['master'] !== 1)
             deny("/");
-        }
     }
 }

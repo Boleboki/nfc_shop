@@ -14,11 +14,10 @@ class Guest
         $jwt = new JWT();
         $payload = $jwt->decode($_COOKIE['token']);
 
-        if ($payload) {
-            $url = url('/');
+        if ($payload && $payload['admin'] !== 0) {
+            $url = url("/");
             Logger::info("Redirecting authenticated user to dashboard: {$url}");
-            header("Location: {$url}");
-            exit;
+            deny("/");
         }
     }
 }

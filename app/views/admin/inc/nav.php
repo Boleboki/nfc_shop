@@ -1,3 +1,7 @@
+<?php
+
+use App\Models\User;
+?>
 <style>
   .nav-link {
     position: relative;
@@ -50,15 +54,17 @@
           Dashboard
         </a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-          Users
-        </a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="<?= url('admin/users') ?>">Users list</a></li>
-          <li><a class="dropdown-item" href="<?= url('admin/users/create') ?>">Add new user</a></li>
-        </ul>
-      </li>
+      <?php if ((new User)->master()): ?>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            Users
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="<?= url('admin/users') ?>">Users list</a></li>
+            <li><a class="dropdown-item" href="<?= url('admin/users/create') ?>">Add new user</a></li>
+          </ul>
+        </li>
+      <?php endif; ?>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
           Products

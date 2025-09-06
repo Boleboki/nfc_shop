@@ -6,7 +6,7 @@ use App\Core\Logger;
 use App\Models\Product;
 use Exception;
 
-class ProductAdminController
+class AdminProductController
 {
     private Product $product;
 
@@ -44,10 +44,10 @@ class ProductAdminController
             $data = json_decode(file_get_contents("php://input"), true);
             $this->product->create($data);
             echo json_encode(['success' => true, 'message' => 'Uspešno dodat proizvod', 'redirect' => url("/admin/products")]);
-        } catch (\Throwable $err) {
-            Logger::error("Greška prilikom dodavanja proizvoda: " . $err->getMessage());
-            echo json_encode(['success' => false, 'error' => $err->getMessage()]);
-            throw $err;
+        } catch (\Throwable $e) {
+            Logger::error("Greška prilikom dodavanja proizvoda: " . $e->getMessage());
+            echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+            throw $e;
         }
     }
 
@@ -57,10 +57,10 @@ class ProductAdminController
             $data = json_decode(file_get_contents("php://input"), true);
             $this->product->update($id, $data);
             echo json_encode(['success' => true, 'message' => 'Uspešno izmenjen proizvod', 'redirect' => url("/admin/products")]);
-        } catch (\Throwable $err) {
-            Logger::error("Greška prilikom ažuriranja proizvoda: " . $err->getMessage());
-            echo json_encode(['success' => false, 'error' => $err->getMessage()]);
-            throw $err;
+        } catch (\Throwable $e) {
+            Logger::error("Greška prilikom ažuriranja proizvoda: " . $e->getMessage());
+            echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+            throw $e;
         }
     }
 
