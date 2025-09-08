@@ -51,7 +51,7 @@ class AuthController
                 return;
             }
 
-            $user = (new User)->get_user_by_username($username);
+            $user = (new User)->getUserByUsername($username);
 
             if (!$user || !password_verify($password, $user['password'])) {
                 Logger::error(Logger::translate('logs.auth.login_failed', ['username' => $username]));

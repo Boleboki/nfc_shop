@@ -32,18 +32,18 @@ export class ProductUI {
       short_description:
         document.getElementById("short_description")?.value || "",
       price: document.getElementById("price")?.value || 0,
-      stock_quantity: document.getElementById("quantity")?.value || 0,
-      image_url: document.getElementById("photoPathInput")?.value || "",
+      stock_quantity: document.getElementById("stock_quantity")?.value || 0,
+      image_url: document.getElementById("image_url")?.value || "",
     };
   }
   static selectedProductId = null;
-  static selectedListItem = null;
-  static openProductDeleteModal(row) {
-    if (!row || !row.dataset.id) return;
-    this.selectedProductId = row.dataset.id;
-    this.selectedListItem = row;
+  static selectedCard = null;
+  static openProductDeleteModal(card) {
+    if (!card || !card.dataset.id) return;
+    this.selectedProductId = card.dataset.id;
+    this.selectedCard = card;
     document.getElementById("modalProduct").textContent =
-      row.dataset.name || "";
+      card.dataset.name || "";
     const modal = new bootstrap.Modal(
       document.getElementById("deleteProductModal")
     );
@@ -51,7 +51,7 @@ export class ProductUI {
   }
 
   static removeProductAndCloseModal() {
-    this.selectedListItem.remove();
+    this.selectedCard.remove();
     const modalElement = document.getElementById("deleteProductModal");
     const modalInstance = bootstrap.Modal.getInstance(modalElement);
     modalInstance.hide();

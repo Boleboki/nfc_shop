@@ -29,8 +29,10 @@ export class Errors {
     ul.innerHTML = "";
   }
 
-  static removeAllErrors() {
-    const fields = document.querySelectorAll(".error-messages");
+  static removeAllErrors(field = null) {
+    const fields = !field
+      ? document.querySelectorAll(".error-messages")
+      : field.querySelectorAll(".error-messages");
     fields.forEach((field) => {
       field.innerHTML = "";
     });

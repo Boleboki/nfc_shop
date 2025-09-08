@@ -26,5 +26,7 @@
   "logs.users.error_delete_by_id": "Error deleting user with ID :id: :error",
   "logs.users.error_edit_by_id": "Error updating user with ID :id: :error",
 
+  "logs.admin.error_show_dashboard": "Error displaying admin dashboard: :error",
+
   "logs.general.invalid_data": "Invalid data"
 }

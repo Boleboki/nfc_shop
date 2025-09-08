@@ -26,5 +26,7 @@
   "logs.users.error_delete_by_id": "Greška prilikom brisanja korisnika sa ID-jem :id: :error",
   "logs.users.error_edit_by_id": "Greška prilikom ažuriranja korisnika sa ID-jem :id: :error",
 
+  "logs.admin.error_show_dashboard": "Greška prilikom prikaza admin panela: :error",
+
   "logs.general.invalid_data": "Nevalidni podaci"
 }

@@ -4,6 +4,8 @@
   "validator.username.forbidden_characters": "Username contains forbidden characters.",
   "validator.username.exists": "Username already exists",
 
+  "validator.email.exists": "Email already exists",
+
   "validator.password.empty": "Password cannot be empty.",
   "validator.password.min_length": "Password must be at least :min characters long.",
   "validator.password.forbidden_characters": "Password contains forbidden characters.",

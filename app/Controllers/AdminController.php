@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Core\Logger;
+use App\Models\User;
 
 class AdminController
 {
@@ -12,8 +14,18 @@ class AdminController
 
     public function dashboard()
     {
-        return view("admin/dashboard.view.php");
+        try {
+            return view("admin/dashboard.view.php", [
+                'user' => (new User)->currentUser()
+            ]);
+        } catch (\Throwable $e) {
+            Logger::error(Logger::translate("logs.admin.error_show_dashboard", ['error' => $e->getMessage()]));
+            http_response_code(500);
+            echo json_encode(["success" => false, 'error' => $e->getMessage()]);
+        }
     }
+
+
 
     public function uploadImage()
     {

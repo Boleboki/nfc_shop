@@ -5,6 +5,7 @@ import { showCartModal } from "../components/modal.js";
 import { showAlert } from "../helpers/helper.js";
 import { ProductUI } from "../product/ProductUI.js";
 import { ProductManager } from "../product/ProductManager.js";
+import { Errors } from "../helpers/errors.js";
 
 export function initializeProductEvents() {
   const oneProductContainer = document.querySelector("#oneProductContainer");
@@ -36,8 +37,8 @@ export function initializeProductEvents() {
 
   adminProductsListContainer?.addEventListener("click", async (e) => {
     if (e.target.id === "deleteProductBtn") {
-      const row = e.target.closest("tr");
-      ProductUI.openProductDeleteModal(row);
+      const card = e.target.closest(".card");
+      ProductUI.openProductDeleteModal(card);
     }
   });
 
@@ -85,7 +86,20 @@ export function initializeProductEvents() {
       if (e.target.dataset.id) {
         const data = ProductUI.collectProductFormData();
         const response = await ProductManager.update(e.target.dataset.id, data);
+        if (!response.success) {
+          if (response.error) {
+            showAlert(response.error, "danger");
+            return;
+          }
 
+          for (const [field, messages] of Object.entries(response.errors)) {
+            const errorField = document
+              .getElementById(field)
+              ?.parentElement?.querySelector(".error-messages");
+            Errors.displayErrors(errorField, messages);
+          }
+          return;
+        }
         if (response.redirect) {
           localStorage.setItem("productUpdateMessage", response.message);
           window.location.href = response.redirect;
@@ -100,8 +114,23 @@ export function initializeProductEvents() {
   productCreateContainer?.addEventListener("click", async (e) => {
     try {
       if (e.target.id === "addProductBtn") {
+        Errors.removeAllErrors();
         const data = ProductUI.collectProductFormData();
         const response = await ProductManager.add(data);
+        if (!response.success) {
+          if (response.error) {
+            showAlert(response.error, "danger");
+            return;
+          }
+
+          for (const [field, messages] of Object.entries(response.errors)) {
+            const errorField = document
+              .getElementById(field)
+              ?.parentElement?.querySelector(".error-messages");
+            Errors.displayErrors(errorField, messages);
+          }
+          return;
+        }
         if (response.redirect) {
           localStorage.setItem("productUpdateMessage", response.message);
           window.location.href = response.redirect;

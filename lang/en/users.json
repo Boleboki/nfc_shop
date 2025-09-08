@@ -12,14 +12,16 @@
   "users.table.active": "Active",
   "users.table.empty": "No users to display.",
 
-  "users.roles.admin": "Admin",
   "users.roles.user": "User",
+  "users.roles.admin": "Admin",
+  "users.roles.master": "Master",
 
   "users.form.edit_title": "Edit User",
   "users.form.create_title": "Add New User",
 
   "users.form.labels.username": "Username",
   "users.form.labels.password": "Password",
+  "users.form.labels.email": "Email",
   "users.form.labels.role": "Role",
   "users.form.labels.active": "Active",
   "users.form.labels.new_password": "New Password",

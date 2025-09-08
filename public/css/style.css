@@ -39,6 +39,7 @@ h4 {
 .error-messages {
   margin-top: 0.25rem;
   font-size: 0.875rem;
+  text-align: left !important;
   color: var(--danger-color);
   visibility: hidden;
 }

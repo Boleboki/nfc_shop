@@ -2,35 +2,64 @@
 <?php require base_path("app/views/admin/inc/nav.php") ?>
 
 <div id="alertBox" class="mt-3"></div>
+<div class="container mt-5" id="productCreateContainer">
+    <div class="card shadow-sm p-4">
+        <h3 class="mb-4 text-center">Create Product</h3>
 
-<div class="container mt-3" id="productCreateContainer">
-    <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" class="form-control" id="name" name="name" value="" required>
-    </div>
-    <div class="form-group">
-        <label for="price">Description:</label>
-        <input type="text" class="form-control" id="description" name="description" value="">
-    </div>
-    <div class="form-group">
-        <label for="price">Short description:</label>
-        <input type="text" class="form-control" id="short_description" name="short_description" value="">
-    </div>
-    <div class="form-group">
-        <label for="price">Price:</label>
-        <input type="text" class="form-control" id="price" name="price" value="" required>
-    </div>
-    <div class="form-group">
-        <label for="size">Stock quantity:</label>
-        <input type="text" class="form-control" id="quantity" name="quantity" value="" required>
-    </div>
-    <div class="form-group">
-        <label for="size">Image:</label>
-        <input type="hidden" name="add_photo_path" id="photoPathInput">
-        <div class="dropzone" id="dropzone-upload"></div>
-    </div>
+        <div class="row gy-3 justify-content-center">
+            <!-- Slika sa leve strane -->
+            <div class="col-md-3 order-2 order-xl-1 " style="min-width: 250px;">
+                <label class="form-label d-block mb-2 text-center">Product Image</label>
+                <input type="hidden" name="add_photo_path" id="image_url">
+                <div class="dropzone w-100 text-center" id="dropzone-upload" style="min-height: 200px;"></div>
+                <div class="error-messages"></div>
 
-    <button class="btn btn-primary mt-3 mb-5" id="addProductBtn">Add Product</button>
+            </div>
+
+            <!-- Polja pored slike -->
+            <div class="col-md-9 order-1 order-xl-2">
+                <div class="row mb-3">
+                    <div class="col-md-5">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" value="" required>
+                        <div class="error-messages"></div>
+
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="text" class="form-control" id="price" name="price" value="" required>
+                        <div class="error-messages"></div>
+
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="stock_quantity" class="form-label text-nowrap">Stock Quantity</label>
+                        <input type="text" class="form-control" id="stock_quantity" name="stock_quantity" value="" required>
+                        <div class="error-messages"></div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="4"></textarea>
+                    <div class="error-messages"></div>
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="short_description" class="form-label">Short Description</label>
+                    <textarea class="form-control" id="short_description" name="short_description" rows="2"></textarea>
+                    <div class="error-messages"></div>
+
+                </div>
+
+            </div>
+            <div class="col-12 text-end mt-3 order-3">
+                <button class="btn btn-primary btn-lg" id="addProductBtn">
+                    Add Product
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -58,7 +87,7 @@
                 }
 
                 if (jsonResponse.success) {
-                    document.getElementById("photoPathInput").value = jsonResponse.photo_path;
+                    document.getElementById("image_url").value = jsonResponse.photo_path;
                     file.uploadedPath = jsonResponse.photo_path;
 
                     // Ako dozvoljavaš samo jednu sliku
@@ -72,7 +101,7 @@
 
             // Kada korisnik ukloni fajl
             this.on("removedfile", function(file) {
-                document.getElementById("photoPathInput").value = "";
+                document.getElementById("image_url").value = "";
 
                 if (!file.uploadedPath) {
                     console.warn("No uploadedPath for removed file", file);

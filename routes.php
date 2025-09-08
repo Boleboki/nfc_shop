@@ -45,7 +45,8 @@ Router::get('/admin/users/create', 'AdminUserController@create')->only(Master::c
 Router::post('/admin/users', 'AdminUserController@store')->only(Master::class);
 Router::get('/admin/users/{id}/edit', 'AdminUserController@edit')->only(Master::class);
 Router::put('/admin/users/{id}', 'AdminUserController@update')->only(Master::class);
-Router::delete('/admin/users/{id}', 'AdminUserController@destroy')->only(Master::class);
+Router::patch('/admin/users/{id}', 'AdminUserController@updatePassword')->only(Master::class);
+Router::delete('/admin/users/{id}', 'AdminUserController@delete')->only(Master::class);
 
 // Router::get("/admin/orders", "admin/orders/index.php")->only("admin");
 // Router::get('/admin/orders/all', 'admin/orders/index.php')->only("admin");

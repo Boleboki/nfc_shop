@@ -7,14 +7,14 @@ use App\Models\User;  ?>
 
     <!-- Poruka dobrodošlice -->
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        👋 Dobrodošli nazad, <strong>Admin</strong>! Ovo je tvoj dashboard.
+        👋 Dobrodošli nazad, <strong class="text-capitalize"><?= $user['username'] ?? "Admin" ?></strong>! Ovo je tvoj dashboard.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Zatvori"></button>
     </div>
 
     <!-- Glavni sadržaj dashboarda -->
     <h1 class="mb-4">Admin Panel</h1>
 
-    <div class="row">
+    <div class="row g-4">
         <?php if ((new User)->master()): ?>
 
             <div class="col-md-6">
@@ -22,7 +22,7 @@ use App\Models\User;  ?>
                     <div class="card-body">
                         <h5 class="card-title">Korisnici</h5>
                         <p class="card-text">Pregledaj, dodaj ili ukloni korisnike.</p>
-                        <a href="/admin/users" class="btn btn-primary">Upravljaj korisnicima</a>
+                        <a href="<?= url('/admin/users') ?>" class="btn btn-primary">Upravljaj korisnicima</a>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@ use App\Models\User;  ?>
                 <div class="card-body">
                     <h5 class="card-title">Proizvodi</h5>
                     <p class="card-text">Pregledaj i uređuj proizvode u prodavnici.</p>
-                    <a href="/admin/products" class="btn btn-primary">Upravljaj proizvodima</a>
+                    <a href="<?= url('/admin/products') ?>" class="btn btn-primary">Upravljaj proizvodima</a>
                 </div>
             </div>
         </div>

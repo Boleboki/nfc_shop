@@ -23,7 +23,22 @@ class PageController
 
     public function o_nama()
     {
-        return view("o-nama.view.php");
+        try {
+            return view("o-nama.view.php");
+        } catch (\Throwable $e) {
+            Logger::error("Greška prilikom učitavanja stranice o nama: " . $e->getMessage());
+            http_response_code(500);
+            echo json_encode($e->getMessage());
+        }
     }
-    public function kontakt() {}
+    public function kontakt()
+    {
+        try {
+            return view("kontakt.view.php");
+        } catch (\Throwable $e) {
+            Logger::error("Greška prilikom učitavanja stranice o nama: " . $e->getMessage());
+            http_response_code(500);
+            echo json_encode($e->getMessage());
+        }
+    }
 }

@@ -2,9 +2,12 @@
 
 namespace App\Controllers;
 
+use App\Core\Lang;
 use App\Core\Logger;
+use App\Core\Validator;
 use App\Models\Product;
 use Exception;
+use Respect\Validation\Validator as v;
 
 class AdminProductController
 {
@@ -14,6 +17,20 @@ class AdminProductController
     {
         $this->product = new Product();
     }
+
+    private function data(): ?array
+    {
+        $raw = file_get_contents("php://input");
+        $data = json_decode($raw, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE || !is_array($data)) {
+            Logger::warning(Logger::translate("logs.general.invalid_data"));
+            throw new \Exception(Lang::get("logs.general.invalid_data"));
+        }
+
+        return $data;
+    }
+
     public function index()
     {
         return view("admin/products/index.view.php", [
@@ -41,7 +58,21 @@ class AdminProductController
     public function store()
     {
         try {
-            $data = json_decode(file_get_contents("php://input"), true);
+            $data = $this->data();
+            $v = new Validator();
+
+            $v->validate($data, [
+                'name' => v::notEmpty()->addRule(v::alnum())->addRule(v::length(3, 20)),
+                'price' => v::notEmpty()->addRule(v::numericVal()->addRule(v::min(0))->addRule(v::max(100000))),
+                'stock_quantity' => $v->optionalIfFilled(v::intVal()->addRule(v::max(100000))),
+                'description' => $v->optionalIfFilled(v::length(3, 150)->addRule($v->noSpecialChars())),
+                'short_description' => $v->optionalIfFilled(v::length(3, 150)->addRule($v->noSpecialChars())),
+
+            ]);
+            if ($v->hasErrors()) {
+                echo json_encode(['success' => false, 'errors' => $v->getErrors()]);
+                return;
+            }
             $this->product->create($data);
             echo json_encode(['success' => true, 'message' => 'Uspešno dodat proizvod', 'redirect' => url("/admin/products")]);
         } catch (\Throwable $e) {
@@ -54,7 +85,20 @@ class AdminProductController
     public function update($id)
     {
         try {
-            $data = json_decode(file_get_contents("php://input"), true);
+            $data = $this->data();
+            $v = new Validator();
+
+            $v->validate($data, [
+                'name' => v::notEmpty()->addRule($v->noSpecialChars())->addRule(v::length(3, 20)),
+                'price' => v::notEmpty()->addRule(v::numericVal()->addRule(v::min(0))->addRule(v::max(100000))),
+                'stock_quantity' => $v->optionalIfFilled(v::intVal()->addRule(v::max(100000))),
+                'description' => $v->optionalIfFilled(v::length(3, 150)->addRule($v->noSpecialChars())),
+                'short_description' => $v->optionalIfFilled(v::length(3, 150)->addRule($v->noSpecialChars())),
+            ]);
+            if ($v->hasErrors()) {
+                echo json_encode(['success' => false, 'errors' => $v->getErrors()]);
+                return;
+            }
             $this->product->update($id, $data);
             echo json_encode(['success' => true, 'message' => 'Uspešno izmenjen proizvod', 'redirect' => url("/admin/products")]);
         } catch (\Throwable $e) {

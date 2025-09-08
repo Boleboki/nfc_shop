@@ -3,6 +3,7 @@ import { initializeCheckoutEvents } from "./checkout/checkout-events.js";
 import { initializeProductEvents } from "./product/product-events.js";
 import { initializeAuthEvents } from "./auth/auth-events.js";
 import { initializeGalleryEvents } from "./gallery/gallery-events.js";
+import { initializeUserEvents } from "./user/user-events.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initializeCartEvents();
@@ -10,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeCheckoutEvents();
   initializeAuthEvents();
   initializeGalleryEvents();
+  initializeUserEvents();
 });
 
 // onClickIfExists("addUserBtn", () => {

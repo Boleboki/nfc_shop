@@ -12,14 +12,16 @@
   "users.table.active": "Aktivan",
   "users.table.empty": "Nema korisnika za prikaz.",
 
-  "users.roles.admin": "Admin",
   "users.roles.user": "Korisnik",
+  "users.roles.admin": "Admin",
+  "users.roles.master": "Master",
 
   "users.form.edit_title": "Izmena korisnika",
   "users.form.create_title": "Dodavanje novog korisnika",
 
   "users.form.labels.username": "Korisničko ime",
   "users.form.labels.password": "Lozinka",
+  "users.form.labels.email": "Email adresa",
   "users.form.labels.role": "Rola",
   "users.form.labels.active": "Aktivan",
   "users.form.labels.new_password": "Nova lozinka",
