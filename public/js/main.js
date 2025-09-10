@@ -4,6 +4,7 @@ import { initializeProductEvents } from "./product/product-events.js";
 import { initializeAuthEvents } from "./auth/auth-events.js";
 import { initializeGalleryEvents } from "./gallery/gallery-events.js";
 import { initializeUserEvents } from "./user/user-events.js";
+import { initializeOrderEvents } from "./order/order-events.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initializeCartEvents();
@@ -12,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeAuthEvents();
   initializeGalleryEvents();
   initializeUserEvents();
+  initializeOrderEvents();
 });
 
 // onClickIfExists("addUserBtn", () => {

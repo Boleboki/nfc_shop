@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Core\Logger;
 use App\Models\Cart;
 use App\Models\Order;
 
@@ -19,12 +20,10 @@ class OrderController
     {
         try {
             $data = json_decode(file_get_contents("php://input"), true);
-            if (!$this->order->create($data["name"], $data["surname"], $data["phone"], $data["email"], $data["city"], $data["postcode"], $data["address"], $data["products"])) {
-                echo json_encode(["success" => false, "error" => "Naručivanje nije uspelo"]);
-                exit;
-            }
+            $this->order->create($data);
             echo json_encode(["success" => true, "message" => "Uspešno naručivanje"]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
+            Logger::error($e->getMessage());
             http_response_code(500);
             echo json_encode(["success" => false, "error" => $e->getMessage()]);
         }

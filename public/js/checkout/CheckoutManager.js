@@ -1,7 +1,9 @@
+import { url } from "../helpers/helper.js";
+
 export class CheckoutManager {
   static async create(data) {
     try {
-      const res = await fetch("/checkout", {
+      const res = await fetch(url("/checkout"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

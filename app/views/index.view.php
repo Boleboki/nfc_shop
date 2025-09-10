@@ -1,12 +1,12 @@
 <?php require "inc/header.php" ?>
 <?php require "inc/nav.php" ?>
 
-<section class="hero-section position-relative text-center text-white d-flex align-items-center justify-content-center" style="height: 70vh; background-color: rgb(0, 0, 0, 0.9);">
+<section class="hero-section position-relative text-center text-white d-flex align-items-center justify-content-center" style="padding: 5rem 0; background-color: rgb(0, 0, 0, 0.9);">
   <div class="overlay"></div>
   <div class="container position-relative" style="z-index: 2;">
-    <h1 class="display-4 fw-bold mb-4" data-aos="slide-down">Pametni privesci za tvoj digitalni život</h1>
+    <h1 class="display-4 fw-bold mb-5" data-aos="slide-down">Pametni privesci za tvoj digitalni život</h1>
     <p class="lead mb-5">Jednostavno deljenje kontakata, linkova i informacija jednim dodirom.</p>
-    <a href="/proizvodi#sekcijaProizvodi" class="btn-nfc mt-4" data-aos="slide-up">Pogledajte ponudu</a>
+    <a href="<?= url('/proizvodi#sekcijaProizvodi') ?>" class="btn-nfc mt-4" data-aos="slide-up">Pogledajte ponudu</a>
   </div>
 </section>
 

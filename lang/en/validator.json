@@ -6,6 +6,8 @@
 
   "validator.email.exists": "Email already exists",
 
+  "validator.urlname.exists": "Url name already exists",
+
   "validator.password.empty": "Password cannot be empty.",
   "validator.password.min_length": "Password must be at least :min characters long.",
   "validator.password.forbidden_characters": "Password contains forbidden characters.",

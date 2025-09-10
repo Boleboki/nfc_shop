@@ -19,9 +19,14 @@
             <!-- Polja pored slike -->
             <div class="col-md-9 order-1 order-xl-2">
                 <div class="row mb-3">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" name="name" value="<?= htmlspecialchars($product['name']) ?>" required>
+                        <div class="error-messages"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">Url Name</label>
+                        <input type="text" class="form-control" id="url_name" name="url_name" value="<?= htmlspecialchars($product['url_name']) ?>" required>
                         <div class="error-messages"></div>
                     </div>
                     <div class="col-6 col-md-4">
@@ -29,7 +34,7 @@
                         <input type="text" class="form-control" id="price" name="price" value="<?= htmlspecialchars($product['price']) ?>" required>
                         <div class="error-messages"></div>
                     </div>
-                    <div class="col-6 col-md-3">
+                    <div class="col-6 col-md-4">
                         <label for="stock_quantity" class="form-label text-nowrap">Stock Quantity</label>
                         <input type="text" class="form-control" id="stock_quantity" name="stock_quantity" value="<?= htmlspecialchars($product['stock_quantity']) ?>" required>
                         <div class="error-messages"></div>

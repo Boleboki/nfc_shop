@@ -31,6 +31,18 @@ class Product extends Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getByUrlName(string $urlName)
+    {
+        $sql = "SELECT * FROM " . self::PRODUCTS_TABLE . " WHERE url_name = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("s", $urlName);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        return $result->fetch_assoc() ?? false;
+    }
+
 
     public function create($data)
     {
@@ -38,9 +50,9 @@ class Product extends Database
         try {
             $this->ensureConnection();
             $this->conn->begin_transaction();
-            $sql = "INSERT INTO " . self::PRODUCTS_TABLE . " (name, description, short_description, price, stock_quantity, image_url) VALUES (?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO " . self::PRODUCTS_TABLE . " (name, description, short_description, price, stock_quantity, image_url, url_name) VALUES (?, ?, ?, ?, ?, ?, ?)";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bind_param("sssdis", $data['name'], $data['description'], $data['short_description'], $data['price'], $data['stock_quantity'], $data['image_url']);
+            $stmt->bind_param("sssdiss", $data['name'], $data['description'], $data['short_description'], $data['price'], $data['stock_quantity'], $data['image_url'], $data['url_name']);
             $stmt->execute();
             $this->conn->commit();
         } catch (\Throwable $e) {
@@ -114,9 +126,9 @@ class Product extends Database
 
     public function update($product_id, $data)
     {
-        $sql = "UPDATE " . self::PRODUCTS_TABLE . " SET name = ?, description = ?, short_description = ?, price = ?, stock_quantity = ?, image_url = ? WHERE product_id = ?";
+        $sql = "UPDATE " . self::PRODUCTS_TABLE . " SET name = ?, description = ?, short_description = ?, price = ?, stock_quantity = ?, image_url = ?, url_name = ? WHERE product_id = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("sssdisi", $data['name'], $data['description'], $data['short_description'], $data['price'], $data['stock_quantity'], $data['image_url'], $product_id);
+        $stmt->bind_param("sssdissi", $data['name'], $data['description'], $data['short_description'], $data['price'], $data['stock_quantity'], $data['image_url'], $data['url_name'], $product_id);
         return $stmt->execute();
     }
 

@@ -34,6 +34,7 @@ export class ProductUI {
       price: document.getElementById("price")?.value || 0,
       stock_quantity: document.getElementById("stock_quantity")?.value || 0,
       image_url: document.getElementById("image_url")?.value || "",
+      url_name: document.getElementById("url_name")?.value.toLowerCase() || 0,
     };
   }
   static selectedProductId = null;

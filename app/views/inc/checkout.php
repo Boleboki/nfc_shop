@@ -18,8 +18,8 @@
             <input type="text" class="form-control" name="surname" id="surname" required>
           </div>
           <div class="col-md-6">
-            <label for="phone" class="form-label">Broj telefona</label>
-            <input type="text" class="form-control" name="phone" id="phone" required>
+            <label for="phone_number" class="form-label">Broj telefona</label>
+            <input type="text" class="form-control" name="phone_number" id="phone_number" required>
           </div>
           <div class="col-md-6">
             <label for="email" class="form-label">Email (opcionalno)</label>

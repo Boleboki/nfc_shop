@@ -1,5 +1,5 @@
-<?php require "inc/header.php" ?>
-<?php require "inc/nav.php" ?>
+<?php require base_path("app/views/inc/header.php") ?>
+<?php require base_path("app/views/inc/nav.php") ?>
 
 <div class="container" id="cart-container">
     <h2 class="mb-4">Vaša korpa</h2>
@@ -59,8 +59,5 @@
     <?php endif; ?>
 </div>
 
-<?php require_once "inc/checkout.php"; ?>
-
-<script type="module" src="/js/main.js"></script>
-
-<?php require_once "inc/footer.php"; ?>
+<?php require base_path("app/views/inc/checkout.php") ?>
+<?php require base_path("app/views/inc/footer.php") ?>

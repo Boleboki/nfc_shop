@@ -60,9 +60,13 @@ class AdminProductController
         try {
             $data = $this->data();
             $v = new Validator();
-
+            $urlName = $data['url_name'] ?? "";
+            if ($this->product->getByUrlName($urlName)) {
+                $v->addError("url_name", Lang::get("validator.urlname.exists"));
+            }
             $v->validate($data, [
                 'name' => v::notEmpty()->addRule(v::alnum())->addRule(v::length(3, 20)),
+                'url_name' => v::notEmpty()->addRule(v::alnum())->addRule(v::length(3, 20)),
                 'price' => v::notEmpty()->addRule(v::numericVal()->addRule(v::min(0))->addRule(v::max(100000))),
                 'stock_quantity' => $v->optionalIfFilled(v::intVal()->addRule(v::max(100000))),
                 'description' => $v->optionalIfFilled(v::length(3, 150)->addRule($v->noSpecialChars())),
@@ -87,9 +91,14 @@ class AdminProductController
         try {
             $data = $this->data();
             $v = new Validator();
-
+            $urlName = $data['url_name'] ?? "";
+            if ($product = $this->product->getByUrlName($urlName)) {
+                if ($product['product_id'] !== $id)
+                    $v->addError("url_name", Lang::get("validator.urlname.exists"));
+            }
             $v->validate($data, [
                 'name' => v::notEmpty()->addRule($v->noSpecialChars())->addRule(v::length(3, 20)),
+                'url_name' => v::notEmpty()->addRule(v::alnum())->addRule(v::length(3, 20)),
                 'price' => v::notEmpty()->addRule(v::numericVal()->addRule(v::min(0))->addRule(v::max(100000))),
                 'stock_quantity' => $v->optionalIfFilled(v::intVal()->addRule(v::max(100000))),
                 'description' => $v->optionalIfFilled(v::length(3, 150)->addRule($v->noSpecialChars())),

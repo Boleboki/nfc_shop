@@ -74,6 +74,11 @@ use App\Models\User;
           <li><a class="dropdown-item" href="<?= url('admin/products/create') ?>">Add new product</a></li>
         </ul>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="<?= url('admin/orders') ?>" role="button">
+          Orders
+        </a>
+      </li>
     </ul>
     <button class="btn btn-outline-light" id="logoutBtn">
       Logout

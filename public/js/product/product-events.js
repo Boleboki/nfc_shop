@@ -58,18 +58,18 @@ export function initializeProductEvents() {
     }
   });
 
-  oneProductContainer?.addEventListener("click", async (event) => {
-    if (event.target.closest("#addToCart")) {
-      const productId = event.target?.getAttribute("data-id");
+  oneProductContainer?.addEventListener("click", async (e) => {
+    if (e.target.id === "addToCart") {
+      const productId = e.target.dataset.id;
       if (!productId) return;
-      const data = await CartManager.add(productId, 1);
-      if (data) {
-        showCartModal(data.product);
+      const response = await CartManager.add(productId, 1);
+      if (response) {
+        showCartModal(response.product);
         CartUI.updateCartIcon(1);
       }
     }
-    if (event.target.closest("#orderNow")) {
-      const productId = event.target?.getAttribute("data-id");
+    if (e.target.id === "#orderNow") {
+      const productId = e.target?.getAttribute("data-id");
       if (!productId) return;
       const name =
         oneProductContainer.querySelector(".product-name").textContent;

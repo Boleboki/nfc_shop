@@ -45,34 +45,37 @@
 <div id="cart-modal" class="cart-modal-backdrop" style="display: none;">
   <div class="cart-modal">
     <div class="cart-modal-image">
-      <img src="/img/<?= htmlspecialchars($product["image_url"]) ?>" id="cart-modal-img">
+      <img id="cart-modal-img">
       <div class="product-name text-center"></div>
     </div>
-    <div class="cart-modal-content">
+    <div class="cart-modal-content d-flex flex-column">
       <h5>Proizvod je dodat u korpu!</h5>
-      <div class="cart-modal-buttons">
+      <div class="cart-modal-buttons mt-auto">
         <button id="continue-shopping" class="btn btn-secondary">Nastavi kupovinu</button>
-        <a href="/korpa" class="btn btn-primary">Idi u korpu</a>
+        <a href="<?= url('/korpa') ?>" class="btn btn-primary">Idi u korpu</a>
       </div>
     </div>
   </div>
 </div>
 
 <div class="product-container" id="oneProductContainer">
-  <div class="product-image">
-    <img src="/img/<?= htmlspecialchars($product["image_url"]) ?>" alt="Product Image">
-  </div>
-  <div class="product-details">
-    <h1 class="product-name"><?= htmlspecialchars($product["name"]) ?></h1>
-    <p><?= nl2br(htmlspecialchars($product["description"])) ?></p>
-    <div><span class="product-price"><?= number_format($product["price"], 2) ?></span> RSD</div>
+  <div class="row">
+    <div class="col-md-6">
+      <img src="<?= url('img/' . htmlspecialchars($product['image_url'])) ?>" alt="Product Image" class="img-fluid">
+    </div>
+    <div class="col-md-6 d-flex flex-column">
+      <h1 class="product-name"><?= htmlspecialchars($product["name"]) ?></h1>
+      <p><?= nl2br(htmlspecialchars($product["description"])) ?></p>
+      <div><span class="product-price"><?= number_format($product["price"], 2) ?></span> RSD</div>
 
-    <div class="buttons">
-      <button type="button" id="addToCart" class="btn btn-primary" data-id="<?= htmlspecialchars($product["product_id"]) ?>">Dodaj u korpu</button>
+      <div class="buttons mt-auto">
+        <button type="button" id="addToCart" class="btn btn-primary" data-id="<?= htmlspecialchars($product["product_id"]) ?>">Dodaj u korpu</button>
 
-      <button type="button" id="orderNow" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkoutModal" data-id="<?= htmlspecialchars($product["product_id"]) ?>">Poruči odmah</button>
+        <button type="button" id="orderNow" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkoutModal" data-id="<?= htmlspecialchars($product["product_id"]) ?>">Poruči odmah</button>
+      </div>
     </div>
   </div>
+
 </div>
 
 <?php require base_path("app/views/inc/checkout.php") ?>

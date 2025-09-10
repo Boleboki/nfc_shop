@@ -29,8 +29,9 @@ export class CartUI {
   static destroy() {
     this.showEmptyMessage();
     this.destroyCartIcon();
-    const rows = document.querySelectorAll("#cart-products tbody tr");
-    rows.remove();
+    const tbody = document.querySelectorAll("#cart-products tbody");
+    if (!tbody);
+    tbody.innerHTML = "";
   }
 
   static showEmptyMessage() {
@@ -40,11 +41,11 @@ export class CartUI {
   }
 
   static destroyCartIcon() {
-    const buttons = document.querySelectorAll(".cart-btn");
-    buttons.forEach((btn) => {
-      let badge = btn.querySelector(".cart-counter");
-      badge.remove();
-    });
+    const button = document.querySelector(".cart-btn");
+    if (!button) return;
+    const badge = button.querySelector("span");
+    if (!badge) return;
+    badge.remove();
   }
 
   static updateCartIcon(delta) {

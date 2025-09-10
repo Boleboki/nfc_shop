@@ -48,14 +48,14 @@ Router::put('/admin/users/{id}', 'AdminUserController@update')->only(Master::cla
 Router::patch('/admin/users/{id}', 'AdminUserController@updatePassword')->only(Master::class);
 Router::delete('/admin/users/{id}', 'AdminUserController@delete')->only(Master::class);
 
-// Router::get("/admin/orders", "admin/orders/index.php")->only("admin");
+Router::get("/admin/orders", "AdminOrderController@index")->only(Admin::class);
+Router::get("/api/admin/orders", "AdminOrderController@getAll")->only(Admin::class);
+Router::patch("/admin/orders/status/{id}", "AdminOrderController@updateStatus")->only(Admin::class);
 // Router::get('/admin/orders/all', 'admin/orders/index.php')->only("admin");
 // Router::get('/admin/orders/finished', 'admin/orders/index.php')->only("admin");
 // Router::get('/admin/orders/unfinished', 'admin/orders/index.php')->only("admin");
 
 // Router::patch("/admin/orders/finish", "admin/orders/finish.php")->only("admin");
-
-// Router::get("/admin/products/create", "admin/products/create.php")->only("admin");
 
 
 // Router::get('/admin/login', 'AdminAuthController@showLoginForm')->only(AdminGuestMiddleware::class);
@@ -64,9 +64,6 @@ Router::delete('/admin/users/{id}', 'AdminUserController@delete')->only(Master::
 
 // // Dashboard
 // Router::get('/admin/dashboard', 'AdminDashboardController@index')->only(AdminAuthMiddleware::class);
-
-
-// // Admin users
 
 
 // // Orders

@@ -6,6 +6,8 @@
 
   "validator.email.exists": "Email adresa već postoji",
 
+  "validator.urlname.exists": "Url adresa već postoji",
+
   "validator.password.empty": "Lozinka ne sme da bude prazna.",
   "validator.password.min_length": "Lozinka mora imati najmanje :min karaktera.",
   "validator.password.forbidden_characters": "Lozinka sadrži nedozvoljenje karaktere.",
