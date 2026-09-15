@@ -40,7 +40,7 @@ $cart = new Cart();
     </div>
 
     <!-- Korpa -->
-    <a class="btn position-relative ms-auto cart-btn" href="<?= url('/korpa') ?>">
+    <a class="btn position-relative ms-auto" href="<?= url('/korpa') ?>" id="cartBtn">
       <?php if ($cart->countItems() > 0): ?>
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
           <?= $cart->countItems() ?>

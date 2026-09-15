@@ -8,18 +8,17 @@ export function initializeCartEvents() {
   const container = document.querySelector("#cart-products");
 
   if (container) {
-    container.addEventListener("click", async (event) => {
-      const target = event.target;
-      const row = target.closest("tr");
-
-      if (target.closest(".remove-product-btn")) {
-        const productId = target.getAttribute("data-id");
+    container.addEventListener("click", async (e) => {
+      const row = e.target.closest("tr");
+      if (e.target.classList.contains("remove-product-btn")) {
+        const productId = e.target.getAttribute("data-id");
         const sum = parseFloat(
           row.querySelector(".product-prices-all span").textContent
         );
         const quantity = parseInt(
           row.querySelector(".product-quantity").textContent
         );
+
         CartUI.updateTotal(-sum);
         CartUI.removeRow(row);
 
@@ -29,8 +28,8 @@ export function initializeCartEvents() {
         await CartManager.remove(productId);
       }
 
-      if (target.closest(".increase-btn")) {
-        const productId = target.getAttribute("data-id");
+      if (e.target.id === "increaseBtn") {
+        const productId = e.target.dataset.id;
         const price = parseFloat(
           row.querySelector(".product-prices").textContent
         );
@@ -43,8 +42,8 @@ export function initializeCartEvents() {
         await CartManager.add(productId, 1);
       }
 
-      if (target.closest(".decrease-btn")) {
-        const productId = target.getAttribute("data-id");
+      if (e.target.id === "decreaseBtn") {
+        const productId = e.target.dataset.id;
         const price = parseFloat(
           row.querySelector(".product-prices").textContent
         );

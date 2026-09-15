@@ -30,9 +30,9 @@
                             <td><span class="product-prices"><?= $product['price'] ?></span> RSD</td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-outline-secondary decrease-btn" data-id="<?= $product["product_id"] ?>">-</button>
+                                    <button type="button" class="btn btn-outline-secondary" id="decreaseBtn" data-id="<?= $product["product_id"] ?>">-</button>
                                     <span class="btn btn-light disabled product-quantity"><?= $product["quantity"] ?></span>
-                                    <button type="button" class="btn btn-outline-secondary increase-btn" data-id="<?= $product["product_id"] ?>">+</button>
+                                    <button type="button" class="btn btn-outline-secondary" id="increaseBtn" data-id="<?= $product["product_id"] ?>">+</button>
                                 </div>
                             </td>
                             <td class="product-prices-all"><span><?= $subtotal ?></span> RSD</td>

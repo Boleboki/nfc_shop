@@ -41,7 +41,7 @@ export class CartUI {
   }
 
   static destroyCartIcon() {
-    const button = document.querySelector(".cart-btn");
+    const button = document.querySelector("#cartBtn");
     if (!button) return;
     const badge = button.querySelector("span");
     if (!badge) return;
@@ -49,31 +49,27 @@ export class CartUI {
   }
 
   static updateCartIcon(delta) {
-    const buttons = document.querySelectorAll(".cart-btn");
+    const cartBtn = document.querySelector("#cartBtn");
+    let badge = cartBtn.querySelector("span");
+    if (!badge) {
+      badge = document.createElement("span");
+      badge.className =
+        "position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary cart-counter";
+      badge.textContent = "0";
+      cartBtn.appendChild(badge);
+    }
 
-    buttons.forEach((btn) => {
-      let badge = btn.querySelector(".cart-counter");
+    let currentCount = parseInt(badge.textContent) || 0;
+    let newCount = currentCount + delta;
 
-      if (!badge) {
-        badge = document.createElement("span");
-        badge.className =
-          "position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary cart-counter";
-        badge.textContent = "0";
-        btn.appendChild(badge);
-      }
+    // Ensure count is not negative
+    newCount = Math.max(newCount, 0);
 
-      let currentCount = parseInt(badge.textContent) || 0;
-      let newCount = currentCount + delta;
-
-      // Ensure count is not negative
-      newCount = Math.max(newCount, 0);
-
-      if (newCount > 0) {
-        badge.textContent = newCount;
-        badge.style.display = "inline";
-      } else {
-        badge.style.display = "none";
-      }
-    });
+    if (newCount > 0) {
+      badge.textContent = newCount;
+      badge.style.display = "inline";
+    } else {
+      badge.style.display = "none";
+    }
   }
 }
